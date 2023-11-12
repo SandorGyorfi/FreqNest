@@ -147,6 +147,25 @@
 {% endblock %}
 
 {% block postloadjs %}
-
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'checkout/checkout.js' %}"></script>
+    <script>
+        var stripe = Stripe('{{ stripe_public_key }}'); 
+    
+        var elements = stripe.elements();
+    
+        var card = elements.create('card');
+    
+        card.mount('#card-element');
+    
+        card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+    </script>
     
 {% endblock %}
