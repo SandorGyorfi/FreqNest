@@ -47,3 +47,9 @@ def all_synths(request):
     }
     
     return render(request, 'synths/synths.html', context)
+
+def synths_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {'product': product}
+    return render(request, 'synths/synths_detail.html', context)
+
