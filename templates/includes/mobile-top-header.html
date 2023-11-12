@@ -1,0 +1,59 @@
+<ul>
+    <!-- Search -->
+    <li>
+        <a href="#" id="mobile-search">
+            <div>
+                <div>Search</div>
+            </div>
+        </a>
+        <div aria-labelledby="mobile-search">
+            <form method="GET" action="#">
+                <div>
+                    <input type="text" name="q" placeholder="Search content">
+                    <div>
+                        <button type="submit">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </li>
+
+    <!-- User Options -->
+    <li>
+        <a href="#" id="user-options">
+            <div>
+                <div>My Account</div>
+            </div>
+        </a>
+        <div>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a href="#">Product Management</a>
+                {% endif %}
+                <a href="#">My Profile</a>
+                <a href="#">Logout</a>
+            {% else %}
+                <a href="#">Register</a>
+                <a href="#">Login</a>
+            {% endif %}
+        </div>
+    </li>
+
+    <!-- Cart -->
+    <li>
+        <a href="#">
+            <div>
+                <div>Cart</div>
+                <p>
+                    {% if grand_total %}
+                        £{{ grand_total|floatformat:2 }}
+                    {% else %}
+                        £0.00
+                    {% endif %}
+                </p>
+            </div>
+        </a>
+    </li>
+</ul>
