@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div>
+        <div>
+            <div></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div></div>
+<div>
+    <h2>Synth Details</h2>
+    <div>
+        {% if messages %}
+            <div>
+                <div>
+                    <div>
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div>
+            <div>
+                {% if product.image_url %}
+                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                {% else %}
+                <img src="{% static 'noimage.png' %}" alt="{{ product.name }}">
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <p>{{ product.name }}</p>
+                <p>£{{ product.price }}</p>
+                {% if product.category %}
+                    <p>{{ product.category.friendly_name }}</p>
+                {% endif %}
+                <p>{{ product.description }}</p>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <div>
+                            <p><strong>Enter quantity:</strong></p>
+                            <div>
+                                <input type="number" name="quantity" value="1" min="1" max="99">
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="Add to Cart">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+{% endblock %}
