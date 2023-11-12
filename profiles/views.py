@@ -17,4 +17,4 @@ def profile(request):
         form = UserProfileForm(instance=profile)
 
     orders = profile.user.order_set.all()  
-    return render(request, 'profiles/profile.html', {'form': form, 'orders': orders})
+    return render(request, 'profiles/profiles.html', {'form': form, 'orders': orders})
