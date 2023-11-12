@@ -6,9 +6,9 @@
                 All Synths
             </a>
             <div>
-                <a href="#">By Price</a>
-                <a href="#">By Category</a>
-                <a href="#">All Synths</a>
+                <a href="{% url 'all_synths' %}?sort=price&direction=asc">By Price</a>
+                <a href="{% url 'all_synths' %}?sort=category&direction=asc">By Category</a>
+                <a href="{% url 'all_synths' %}">All Synths</a>
             </div>
         </li>
 
@@ -18,14 +18,14 @@
                 Eurorack Modules
             </a>
             <div>
-                <a href="#">VCOs</a>
-                <a href="#">Effects</a>
-                <a href="#">Sequencers</a>
-                <a href="#">Drums</a>
-                <a href="#">Filters</a>
-                <a href="#">Modulators</a>
-                <a href="#">Mixers</a>
-                <a href="#">All Modules</a>
+                <a href="{% url 'all_synths' %}?category=vcos">VCOs</a>
+                <a href="{% url 'all_synths' %}?category=effects">Effects</a>
+                <a href="{% url 'all_synths' %}?category=sequencers">Sequencers</a>
+                <a href="{% url 'all_synths' %}?category=drums">Drums</a>
+                <a href="{% url 'all_synths' %}?category=filters">Filters</a>
+                <a href="{% url 'all_synths' %}?category=modulators">Modulators</a>
+                <a href="{% url 'all_synths' %}?category=mixers">Mixers</a>
+                <a href="{% url 'all_synths' %}?category=vcos,effects,sequencers,drums,filters,modulators,mixers">All Modules</a>
             </div>
         </li>
 
@@ -35,10 +35,10 @@
                 Semi-Modular Synths
             </a>
             <div>
-                <a href="#">Behringer</a>
-                <a href="#">Korg</a>
-                <a href="#">Moog</a>
-                <a href="#">All Makes</a>
+                <a href="{% url 'all_synths' %}?category=behringer">Behringer</a>
+                <a href="{% url 'all_synths' %}?category=korg">Korg</a>
+                <a href="{% url 'all_synths' %}?category=moog">Moog</a>
+                <a href="{% url 'all_synths' %}?category=behringer,korg,moog">All Makes</a>
             </div>
         </li>
 

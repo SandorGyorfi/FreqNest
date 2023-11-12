@@ -34,12 +34,12 @@
     <header>
         <div>
             <div>
-                <a href="#">
+                <a href="{% url 'shop' %}">
                     <h2>FreqNest</h2>
                 </a>
             </div>
             <div>
-                <form method="GET" action="#">
+                <form method="GET" action="{% url 'all_synths' %}">
                     <div>
                         <input type="text" name="q" placeholder="Search content">
                         <div>
@@ -99,7 +99,8 @@
                 <button type="button">
                     <span></span>
                 </button>
-                
+                {% include 'includes/mobile-top-header.html' %}
+                {% include 'includes/main-nav.html' %}
             </nav>
         </div>
     </header>
