@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
@@ -13,12 +14,22 @@
     {% endblock %}
 
     {% block corecss %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+        <link rel="icon" type="image/png" href="{% static 'path/to/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
     {% block corejs %}
+        <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+
     {% endblock %}
 
     {% block extra_js %}
@@ -31,19 +42,20 @@
     </title>
 </head>
 <body>
-    <header>
-        <div>
-            <div>
-                <a href="{% url 'shop' %}">
-                    <h2>FreqNest</h2>
+    <header class="container-fluid fixed-top bg-black">
+        <div id="topnav" class="row bg-black pt-lg-2 d-none d-lg-flex">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="{% url 'shop' %}" class="nav-link main-logo-link">
+                    <h2 class="logo-font text-light text-white my-0"><strong class="logo-bold">F</strong>req<strong class="logo-bold">N</strong>est</h2>
                 </a>
+
             </div>
-            <div>
+            <div class="bg-black col-12 col-lg-4 my-auto py-5 py-lg-0">
                 <form method="GET" action="{% url 'all_synths' %}">
-                    <div>
-                        <input type="text" name="q" placeholder="Search content">
-                        <div>
-                            <button type="submit">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control bg-black border rounded-10" placeholder="Search content">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn bg-black text-white border rounded-10">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -51,36 +63,36 @@
                 </form>
             </div>
             
-            <div>
-                <ul>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <!-- User dropdown -->
-                    <li>
-                        <a href="#" id="user-options">
-                            <div>
+                    <li class="list-inline-item dropdown">
+                        <a class="nav-link text-black" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="text-center">
                                 <i class="fas fa-user fa-lg"></i>
-                                <p>My Account</p>
+                                <p class="my-0">My Account</p>
                             </div>
                         </a>
-                        <div>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <a href="#">My Synths</a> 
+                                <a href="#" class="dropdown-item">My Synths</a> 
                                 {% endif %}
-                                <a href="#">My Profile</a> 
-                                <a href="#">Logout</a>
+                                <a href="#" class="dropdown-item">My Profile</a> 
+                                <a href="#" class="dropdown-item">Logout</a>
                             {% else %}
-                                <a href="#">Register</a>
-                                <a href="#">Login</a>
+                                <a href="#" class="dropdown-item">Register</a>
+                                <a href="#" class="dropdown-item">Login</a>
                             {% endif %}
                         </div>
                     </li>
             
-                    <!-- Shopping bag indicator -->
-                    <li>
-                        <a href="#">
-                            <div>
+                    <!--  indicator -->
+                    <li class="list-inline-item">
+                        <a class="nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="{% url 'view_cart' %}">
+                            <div class="text-center">
                                 <i class="fas fa-shopping-bag fa-lg"></i>
-                                <p>
+                                <p class="my-0">
                                     {% if grand_total %}
                                         £{{ grand_total|floatformat:2 }}
                                     {% else %}
@@ -92,21 +104,25 @@
                     </li>
                 </ul>
             </div>
+            
         </div>
-        <!--NAV-->
-        <div>
-            <nav>
-                <button type="button">
-                    <span></span>
+        <!--NAV-------------------------------------->
+        <div class="row bg-black">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <button class="navbar-toggler btn-group" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-white"></span>
                 </button>
                 {% include 'includes/mobile-top-header.html' %}
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
+        
+
+        
     </header>
 
     {% if messages %}
-        <div></div>
+        <div class="message-container"></div>
     {% endif %}
 
     {% block page_header %}
