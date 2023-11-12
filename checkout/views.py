@@ -1,10 +1,13 @@
 import os
-from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.conf import settings
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from .models import Order, OrderLineItem, Product
 from .forms import OrderForm
 from cart.contexts import cart_contents
+import json
+
 
 def checkout(request):
     if request.method == 'POST':
@@ -57,3 +60,41 @@ def checkout(request):
 
 
     return render(request, 'checkout/checkout.html', context)
+
+
+def checkout_success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    context = {
+        'order': order,
+    }
+    return render(request, 'checkout/checkout_success.html', context)
+
+
+@csrf_exempt  
+def save_order(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.POST.get('orderData'))
+            items = data['items']
+            total_price = data['totalPrice']
+
+            order = Order(total=total_price) 
+            order.save()
+
+            for item_name in items:
+                product, created = Product.objects.get_or_create(name=item_name) 
+                OrderLineItem.objects.create(order=order, product=product)  
+
+            return JsonResponse({'status': 'success', 'message': 'Order saved successfully'})
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': f'Error processing order: {str(e)}'}, status=500)
+
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
+
+
+def stripe_public_key(request):
+    public_key = os.environ.get('STRIPE_PUBLIC_KEY', '')  
+    return JsonResponse({'publicKey': public_key})
