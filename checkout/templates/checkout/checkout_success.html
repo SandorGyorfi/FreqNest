@@ -28,5 +28,17 @@
     </div>
 </div>
 
+<script>
+    var secondsLeft = 10;
 
+    function countdown() {
+        secondsLeft--;
+        document.getElementById("countdown").innerText = secondsLeft;
+        if (secondsLeft <= 0) {
+            window.location.href = "{% url 'all_synths' %}";
+        }
+    }
+    
+    setInterval(countdown, 1000);
+</script>
 {% endblock %}
