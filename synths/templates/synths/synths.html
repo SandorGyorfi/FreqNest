@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div>
+        <div>
+            <div></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <select id="sort-selector">
+                <option value="reset">Sort by...</option>
+                <option value="price_asc">Price (low to high)</option>
+                <option value="price_desc">Price (high to low)</option>
+                <option value="name_asc">Name (A-Z)</option>
+                <option value="name_desc">Name (Z-A)</option>
+                <option value="category_asc">Category (A-Z)</option>
+                <option value="category_desc">Category (Z-A)</option>
+            </select>
+        </div>
+    </div>
+</div>
+    <div></div>
+    <div>
+        <div>
+            <div>
+                <h2>Synths</h2>
+                {% for c in current_categories %}
+                    <span>{{ c.friendly_name }}</span>
+                {% endfor %}
+                <hr>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div>
+                    {% for product in synths %}
+                        <div>
+                            <div>
+                                {% if product.image_url %}
+                                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                                {% else %}
+                                <img src="{% static 'noimage.png' %}" alt="{{ product.name }}">
+                                {% endif %}
+                                <div>
+                                    <p>{{ product.name }}</p>
+                                </div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <p>£{{ product.price }}</p>
+                                            {% if synths.category %}
+                                                <p>{{ product.category.friendly_name }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:1 %}
+                            <div><hr></div>
+                        {% endif %}                        
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div><hr></div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div><hr></div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:4 %}
+                            <div><hr></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    
+
+{% endblock %}
