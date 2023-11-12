@@ -1,46 +1,54 @@
-<div>
-    <ul>
+<div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav w-auto ml-auto">
         <!-- All Synths -->
-        <li>
-            <a href="#" id="all-synths-link">
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link bg-black text-white mr-5" href="#" id="all-synths-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle All Synths dropdown">
                 All Synths
             </a>
-            <div>
-                <a href="{% url 'all_synths' %}?sort=price&direction=asc">By Price</a>
-                <a href="{% url 'all_synths' %}?sort=category&direction=asc">By Category</a>
-                <a href="{% url 'all_synths' %}">All Synths</a>
+            <div class="dropdown-menu border-0" aria-labelledby="all-synths-link">
+                <a href="{% url 'all_synths' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'all_synths' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
+                <a href="{% url 'all_synths' %}" class="dropdown-item">All Synths</a>
             </div>
         </li>
 
         <!-- Eurorack Modules -->
-        <li>
-            <a href="#" id="eurorack-link">
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link bg-black text-white mr-5" href="#" id="eurorack-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle Eurorack Modules dropdown">
                 Eurorack Modules
             </a>
-            <div>
-                <a href="{% url 'all_synths' %}?category=vcos">VCOs</a>
-                <a href="{% url 'all_synths' %}?category=effects">Effects</a>
-                <a href="{% url 'all_synths' %}?category=sequencers">Sequencers</a>
-                <a href="{% url 'all_synths' %}?category=drums">Drums</a>
-                <a href="{% url 'all_synths' %}?category=filters">Filters</a>
-                <a href="{% url 'all_synths' %}?category=modulators">Modulators</a>
-                <a href="{% url 'all_synths' %}?category=mixers">Mixers</a>
-                <a href="{% url 'all_synths' %}?category=vcos,effects,sequencers,drums,filters,modulators,mixers">All Modules</a>
+            <div class="dropdown-menu border-0" aria-labelledby="eurorack-link">
+                <a href="{% url 'all_synths' %}?category=vcos" class="dropdown-item">VCOs</a>
+                <a href="{% url 'all_synths' %}?category=effects" class="dropdown-item">Effects</a>
+                <a href="{% url 'all_synths' %}?category=sequencers" class="dropdown-item">Sequencers</a>
+                <a href="{% url 'all_synths' %}?category=drums" class="dropdown-item">Drums</a>
+                <a href="{% url 'all_synths' %}?category=filters" class="dropdown-item">Filters</a>
+                <a href="{% url 'all_synths' %}?category=modulators" class="dropdown-item">Modulators</a>
+                <a href="{% url 'all_synths' %}?category=mixers" class="dropdown-item">Mixers</a>
+                <a href="{% url 'all_synths' %}?category=vcos,effects,sequencers,drums,filters,modulators,mixers" class="dropdown-item">All Modules</a>
             </div>
         </li>
 
-        <!-- Semi-Modular Synths -->
-        <li>
-            <a href="#" id="semi-link">
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="semi-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Semi-Modular Synths
             </a>
-            <div>
-                <a href="{% url 'all_synths' %}?category=behringer">Behringer</a>
-                <a href="{% url 'all_synths' %}?category=korg">Korg</a>
-                <a href="{% url 'all_synths' %}?category=moog">Moog</a>
-                <a href="{% url 'all_synths' %}?category=behringer,korg,moog">All Makes</a>
+            <div class="dropdown-menu border-0" aria-labelledby="semi-link">
+                <a href="{% url 'all_synths' %}?category=behringer" class="dropdown-item">Behringer</a>
+                <a href="{% url 'all_synths' %}?category=korg" class="dropdown-item">Korg</a>
+                <a href="{% url 'all_synths' %}?category=moog" class="dropdown-item">Moog</a>
+                <a href="{% url 'all_synths' %}?category=behringer,korg,moog" class="dropdown-item">All Makes</a>
             </div>
         </li>
 
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="deals-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                News & Deals
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="deals-link">
+                <a href="" class="dropdown-item">New Arrivals</a>
+                <a href="" class="dropdown-item">Deals</a>
+            </div>
+        </li>
     </ul>
 </div>
