@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-fluid">
+    <h2 class="logo-font center-align">Order Confirmation</h2>
+    <div class="card row">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="alert alert-success bg-dark text-white mt-5">
+                <ul>
+                    <li>
+                        Your order was processed successfully! 
+                        You will be redirected to the main page in 
+                        <span id="countdown">10</span> seconds...
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
