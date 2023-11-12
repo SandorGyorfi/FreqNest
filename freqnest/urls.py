@@ -25,6 +25,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('shop.urls')),
     path('synths/', include('synths.urls')),
+    path('cart/', include('cart.urls')),
+
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
