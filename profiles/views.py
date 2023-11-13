@@ -55,16 +55,17 @@ def order_detail(request, order_id):
     return render(request, 'profiles.html', context)
 
 
-
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(user=user)  
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
+            messages.success(request, 'Registered successfully.') 
             return redirect('index')  
     else:
         form = UserRegistrationForm()
