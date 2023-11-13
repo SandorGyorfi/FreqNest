@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from .models import Profile
 from checkout.models import Order
+from django.contrib.auth import login, authenticate
+from .forms import UserRegistrationForm
 
 @login_required
 def profile(request):
@@ -51,3 +53,19 @@ def order_detail(request, order_id):
     context = {'order': order}
 
     return render(request, 'profiles.html', context)
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('home') 
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'profiles/register.html', {'form': form})
