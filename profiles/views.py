@@ -94,4 +94,4 @@ def custom_login(request):
             messages.error(request, 'Invalid username or password.')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'profiles/login.html', {'form': form})
