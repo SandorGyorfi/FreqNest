@@ -34,9 +34,30 @@
 
                 </fieldset>
 
-                <div class="submit-button text-right mt-5 mb-2">
-                    <button type="submit" class="btn float-right p-1">Login</button>
+                <div class="submit-button text-right mt-2 mb-3">
+                    <!-- Login Button -->
+                    <button type="submit" class="btn mt-5 rounded-10 float-right">
+                        <a href="{% url 'login' %}" class="btn rounded-10 text-center"></a>
+                        <span class="text-uppercase">Login</span>
+                    </button>
+                
+                    <!-- Registration Section -->
+                    <div class="float-left">
+                        <!-- Small paragraph for registration prompt -->
+                        <p class="mb-2 p-1">
+                            <small>NOT REGISTERED ? <i class="fas fa-arrow-down"></i>
+                            </small>
+                        </p>
+                        
+                        <!-- Registration Button -->
+                        <a href="{% url 'register' %}" class="btn mt-2 rounded-10">
+                            
+                            <span class="text-uppercase">Register Here</span>
+                        </a>
+                    </div>
                 </div>
+                
+                
             </form>
         </div>
     </div>
