@@ -3,6 +3,7 @@ from django.db.models import Sum
 from synths.models import Product
 from django.conf import settings
 import uuid
+from decimal import Decimal
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE, related_name='orders')
@@ -56,7 +57,9 @@ class OrderLineItem(models.Model):
         Override the original save method to set the lineitem total
         and update the order total.
         """
-        self.lineitem_total = self.product.price * self.quantity
+        price = Decimal(self.product.price)
+        self.lineitem_total = price * self.quantity
+        self.lineitem_total = self.lineitem_total.quantize(Decimal('.01'))
         super().save(*args, **kwargs)
 
     def __str__(self):

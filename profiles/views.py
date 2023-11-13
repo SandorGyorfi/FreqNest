@@ -1,38 +1,40 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserProfileForm
+from django.contrib.auth import login, authenticate
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm  
 from .models import Profile
 from checkout.models import Order
-from django.contrib.auth import login, authenticate
-from .forms import UserRegistrationForm
+
+
 
 @login_required
 def profile(request):
-    try:
-        user_profile = Profile.objects.get(user=request.user)
-    except Profile.DoesNotExist:
-        user_profile = None
-        messages.info(request, "Profile not found. Please create a profile.")
+    user = request.user
+    if not hasattr(user, 'profile'):
+        Profile.objects.create(user=user)
 
-    if request.method == 'POST' and user_profile:
-        form = UserProfileForm(request.POST, instance=user_profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Your profile has been updated!')
+            return redirect('profile')
         else:
-            print("Form errors:", form.errors)
-    else:
-        form = UserProfileForm(instance=user_profile) if user_profile else UserProfileForm()
+            print("User form errors:", u_form.errors)
+            print("Profile form errors:", p_form.errors)
 
-    orders = Order.objects.filter(user=request.user)
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    context = {
-        'form': form,
-        'orders': orders  
-    }
+    orders = Order.objects.filter(user=user).order_by('-date')
+    context = {'u_form': u_form, 'p_form': p_form, 'orders': orders}
     return render(request, 'profiles/profiles.html', context)
+
+
 
 
 
@@ -60,16 +62,20 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            Profile.objects.create(user=user)  
+            Profile.objects.create(user=user)
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, 'Registered successfully.') 
-            return redirect('index')  
+            return redirect('profile')
+        else:
+            print("Form is not valid: ", form.errors)  
     else:
         form = UserRegistrationForm()
     return render(request, 'profiles/register.html', {'form': form})
 
+
+
 def index(request):
-    return render(request, 'shop/index.html')
+    return render(request, 'profiles/profiles.html')

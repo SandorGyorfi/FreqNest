@@ -36,51 +36,68 @@
 
     <div class="row justify-content-center text-center rounded">
         <div class="col-8 rounded mx-auto">
-            <form method="post" class="text-white">
+            <form method="post" class="text-white" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset class="rounded-10 border text-white">
+                    <legend class="fieldset-label small text-black px-2 w-auto">User Details</legend>
+                    
+                    <!-- User Update Form Fields -->
+                    <div class="form-group">
+                        <label for="{{ u_form.username.id_for_label }}">Username</label>
+                        <input type="text" name="{{ u_form.username.name }}" class="form-control"
+                            id="{{ u_form.username.id_for_label }}" 
+                            value="{{ u_form.username.value }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ u_form.email.id_for_label }}">Email</label>
+                        <input type="email" name="{{ u_form.email.name }}" class="form-control"
+                            id="{{ u_form.email.id_for_label }}" 
+                            value="{{ u_form.email.value }}">
+                    </div>
+
+                    <!-- Profile Update Form Fields -->
                     <legend class="fieldset-label small text-black px-2 w-auto">Profile Details</legend>
-
                     <div class="form-group">
-                        <label for="{{ form.default_phone_number.id_for_label }}">Phone Number</label>
-                        <input type="text" name="{{ form.default_phone_number.name }}" class="form-control"
-                            id="{{ form.default_phone_number.id_for_label }}" placeholder="Phone Number"
-                            value="{{ form.default_phone_number.value }}">
+                        <label for="{{ p_form.default_phone_number.id_for_label }}">Phone Number</label>
+                        <input type="text" name="{{ p_form.default_phone_number.name }}" class="form-control"
+                            id="{{ p_form.default_phone_number.id_for_label }}" placeholder="Phone Number"
+                            value="{{ p_form.default_phone_number.value }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.default_street_address1.id_for_label }}">Street Address 1</label>
-                        <input type="text" name="{{ form.default_street_address1.name }}" class="form-control"
-                            id="{{ form.default_street_address1.id_for_label }}" placeholder="Street Address 1"
-                            value="{{ form.default_street_address1.value }}">
+                        <label for="{{ p_form.default_street_address1.id_for_label }}">Street Address 1</label>
+                        <input type="text" name="{{ p_form.default_street_address1.name }}" class="form-control"
+                            id="{{ p_form.default_street_address1.id_for_label }}" placeholder="Street Address 1"
+                            value="{{ p_form.default_street_address1.value }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.default_street_address2.id_for_label }}">Street Address 2</label>
-                        <input type="text" name="{{ form.default_street_address2.name }}" class="form-control"
-                            id="{{ form.default_street_address2.id_for_label }}" placeholder="Street Address 2"
-                            value="{{ form.default_street_address2.value }}">
+                        <label for="{{ p_form.default_street_address2.id_for_label }}">Street Address 2</label>
+                        <input type="text" name="{{ p_form.default_street_address2.name }}" class="form-control"
+                            id="{{ p_form.default_street_address2.id_for_label }}" placeholder="Street Address 2"
+                            value="{{ p_form.default_street_address2.value }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.default_town_or_city.id_for_label }}">Town or City</label>
-                        <input type="text" name="{{ form.default_town_or_city.name }}" class="form-control"
-                            id="{{ form.default_town_or_city.id_for_label }}" placeholder="Town or City"
-                            value="{{ form.default_town_or_city.value }}">
+                        <label for="{{ p_form.default_town_or_city.id_for_label }}">Town or City</label>
+                        <input type="text" name="{{ p_form.default_town_or_city.name }}" class="form-control"
+                            id="{{ p_form.default_town_or_city.id_for_label }}" placeholder="Town or City"
+                            value="{{ p_form.default_town_or_city.value }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.default_postcode.id_for_label }}">Postcode</label>
-                        <input type="text" name="{{ form.default_postcode.name }}" class="form-control"
-                            id="{{ form.default_postcode.id_for_label }}" placeholder="Postcode"
-                            value="{{ form.default_postcode.value }}">
+                        <label for="{{ p_form.default_postcode.id_for_label }}">Postcode</label>
+                        <input type="text" name="{{ p_form.default_postcode.name }}" class="form-control"
+                            id="{{ p_form.default_postcode.id_for_label }}" placeholder="Postcode"
+                            value="{{ p_form.default_postcode.value }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.default_country.id_for_label }}">Country</label>
-                        <input type="text" name="{{ form.default_country.name }}" class="form-control"
-                            id="{{ form.default_country.id_for_label }}" placeholder="Country"
-                            value="{{ form.default_country.value }}">
+                        <label for="{{ p_form.default_country.id_for_label }}">Country</label>
+                        <input type="text" name="{{ p_form.default_country.name }}" class="form-control"
+                            id="{{ p_form.default_country.id_for_label }}" placeholder="Country"
+                            value="{{ p_form.default_country.value }}">
                     </div>
                 </fieldset>
 
