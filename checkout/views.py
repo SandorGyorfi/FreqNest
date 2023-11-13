@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required  # Import login_required decorator
 import os
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
@@ -8,7 +9,7 @@ from .forms import OrderForm
 from cart.contexts import cart_contents
 import json
 
-
+@login_required  
 def checkout(request):
     if request.method == 'POST':
         cart = request.session.get('cart', {})
@@ -26,7 +27,9 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            order.user = request.user  
+            order.save()
             
             for item_id, quantity in cart.items():
                 product = Product.objects.get(id=item_id)
@@ -39,10 +42,8 @@ def checkout(request):
 
             del request.session['cart']
             return redirect(reverse('checkout_success', args=[order.order_number]))
-
         else:
             return HttpResponse("There was an error processing your order. Please try again.")
-
     else:
         cart = request.session.get('cart', {})
         if not cart:
@@ -54,10 +55,9 @@ def checkout(request):
         order_form = OrderForm()
 
         context = {
-              'order_form': order_form,
-              'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-}
-
+            'order_form': order_form,
+            'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+        }
 
     return render(request, 'checkout/checkout.html', context)
 
@@ -98,3 +98,5 @@ def save_order(request):
 def stripe_public_key(request):
     public_key = os.environ.get('STRIPE_PUBLIC_KEY', '')  
     return JsonResponse({'publicKey': public_key})
+
+

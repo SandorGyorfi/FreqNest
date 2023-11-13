@@ -1,9 +1,11 @@
 from django.db import models
 from django.db.models import Sum
 from synths.models import Product
+from django.conf import settings
 import uuid
 
 class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE, related_name='orders')
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)

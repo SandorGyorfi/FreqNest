@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from .models import Profile
+from checkout.models import Order
 
 @login_required
 def profile(request):
@@ -18,19 +20,34 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            print("Form errors:", form.errors) 
+            print("Form errors:", form.errors)
     else:
         form = UserProfileForm(instance=user_profile) if user_profile else UserProfileForm()
 
+    orders = Order.objects.filter(user=request.user)
+
     context = {
-        'form': form
+        'form': form,
+        'orders': orders  
     }
-
-    if user_profile:
-        orders = user_profile.user.order_set.all()
-        print("Orders:", orders)  
-        context['orders'] = orders
-    else:
-        context['orders'] = []
-
     return render(request, 'profiles/profiles.html', context)
+
+
+
+
+@login_required
+
+def order_detail(request, order_id):
+
+    """
+
+    View function to display the details of a specific order using the profiles.html template.
+
+    """
+
+    order = get_object_or_404(Order, id=order_id)
+
+
+    context = {'order': order}
+
+    return render(request, 'profiles.html', context)
