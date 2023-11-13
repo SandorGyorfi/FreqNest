@@ -5,7 +5,8 @@ from django.contrib.auth import login, authenticate
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm  
 from .models import Profile
 from checkout.models import Order
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 
 
 @login_required
@@ -33,10 +34,6 @@ def profile(request):
     orders = Order.objects.filter(user=user).order_by('-date')
     context = {'u_form': u_form, 'p_form': p_form, 'orders': orders}
     return render(request, 'profiles/profiles.html', context)
-
-
-
-
 
 
 @login_required
@@ -79,3 +76,22 @@ def register(request):
 
 def index(request):
     return render(request, 'profiles/profiles.html')
+
+
+def custom_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('profile')  
+            else:
+                messages.error(request, 'Invalid username or password.')
+        else:
+            messages.error(request, 'Invalid username or password.')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
