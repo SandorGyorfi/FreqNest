@@ -7,8 +7,17 @@
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font text-center mb-2">Register</h2>
+            <h2 class="logo-font text-center mb-2">Login</h2>
             <hr>
+            {% if messages %}
+            <div class="row">
+                <div class="col">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -43,21 +52,17 @@
                 </fieldset>
 
                 <div class="submit-button text-right mt-2 mb-3">
-                    <!-- Login Button -->
                     <button type="submit" class="btn mt-5 rounded-10 float-right">
                         <a href="{% url 'register' %}" class="btn rounded-10"></a>
                         <span class="text-uppercase">Register</span>
                     </button>
                 
-                    <!-- Registration Section -->
                     <div class="float-left">
-                        <!-- Small paragraph for registration prompt -->
                         <p class="mb-2 p-1">
                             <small>REGISTERED ? <i class="fas fa-arrow-down"></i>
                             </small>
                         </p>
                         
-                        <!-- Registration Button -->
                         <a href="{% url 'login' %}" class="btn mt-2 rounded-10">
                             
                             <span class="text-uppercase">lOGIN Here</span>

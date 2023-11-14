@@ -7,6 +7,9 @@ from .models import Profile
 from checkout.models import Order
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.urls import reverse_lazy
+from django.views.generic import RedirectView
+from django.contrib.auth import logout
 
 
 @login_required
@@ -87,11 +90,21 @@ def custom_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('profile')  
+                messages.success(request, 'Now logged in.')
+                return redirect('profile')
             else:
                 messages.error(request, 'Invalid username or password.')
         else:
-            messages.error(request, 'Invalid username or password.')
+            messages.error(request, 'Invalid form submission.')
     else:
         form = AuthenticationForm()
     return render(request, 'profiles/login.html', {'form': form})
+
+
+class CustomLogoutView(RedirectView):
+    url = reverse_lazy('login')
+    
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        messages.success(request, 'Successfully logged out.')
+        return super().get(request, *args, **kwargs)

@@ -21,18 +21,14 @@
     </div>
 
     {% if messages %}
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-success bg-dark text-white">
-                <ul>
+            <div class="row">
+                <div class="col">
                     {% for message in messages %}
-                    <li>{{ message }}</li>
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
-        </div>
-    </div>
-    {% endif %}
+            {% endif %}
 
     <div class="row text-white">
         <div class="col">
