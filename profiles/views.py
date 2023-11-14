@@ -108,3 +108,12 @@ class CustomLogoutView(RedirectView):
         logout(request)
         messages.success(request, 'Successfully logged out.')
         return super().get(request, *args, **kwargs)
+    
+
+@login_required
+def delete_account(request):
+    user = request.user
+    user.delete()
+    messages.success(request, 'Your account has been deleted.')
+    logout(request)
+    return redirect('login')    
