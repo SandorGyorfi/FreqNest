@@ -1,62 +1,60 @@
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    background: url('/media/homepage_bg.png') no-repeat center center fixed;
-    background-color: #0D0D0D;
-	background-size: cover;
-    height: calc(100vh - 164px);
-    color: #F2F2F2;
-    font-family: "Lato";
-    
+  background: url("/media/homepage_bg.png") no-repeat center center fixed;
+  background-color: #0d0d0d;
+  background-size: cover;
+  height: calc(100vh - 164px);
+  color: #f2f2f2;
+  font-family: "Lato";
 }
 
-p{
-    color: #a0a0a0;
+p {
+  color: #a0a0a0;
 }
 
-h5{
-    font-size: 150%;
-    text-transform: uppercase;
+h5 {
+  font-size: 150%;
+  text-transform: uppercase;
 }
 
 .icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.3rem;
-    width: 1.3rem;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  height: 1.3rem;
+  width: 1.3rem;
 }
 
 .logo-font {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
-.navbar-toggler-icon{
-    background-color: #5d4dee;
-    color: #F2F2F2;
-    border-radius: 10%;
-    
+.navbar-toggler-icon {
+  background-color: #5d4dee;
+  color: #f2f2f2;
+  border-radius: 10%;
 }
 
 .dropdown-menu {
-    background-color: #5d4dee;
+  background-color: #5d4dee;
 }
 
 .dropdown-item {
-    color: #F2F2F2;
+  color: #f2f2f2;
 }
 
 .buy-now-button {
-    background: #5d4dee;
-    color: #F2F2F2;
-    min-width: 260px;
+  background: #5d4dee;
+  color: #f2f2f2;
+  min-width: 260px;
 }
 
 .btn {
-    background: #5d4dee;
-    color: #F2F2F2;
+  background: #5d4dee;
+  color: #f2f2f2;
 }
 
 .buy-now-button:hover,
@@ -65,19 +63,20 @@ h5{
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #F2F2F2;
-    color: #0D0D0D;
+  background: #f2f2f2;
+  color: #0d0d0d;
 }
 
 .list-inline:hover,
 .list-inline:active,
-.list-inline:focus{ 
-    background: #0D0D0D;
-    color: #F2F2F2;}
+.list-inline:focus {
+  background: #0d0d0d;
+  color: #f2f2f2;
+}
 
-.form-control{
-    background: #262624;
-    color: #5d4dee;
+.form-control {
+  background: #262624;
+  color: #5d4dee;
 }
 
 .form-control:hover,
@@ -86,40 +85,40 @@ h5{
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #0D0D0D;
-    color: #F2F2F2;
+  background: #0d0d0d;
+  color: #f2f2f2;
 }
 
 .text-black {
-    color: #F2F2F2 !important;
+  color: #f2f2f2 !important;
 }
 
 .border-black {
-    border: 1px solid #8C8B88 !important;
-    border-radius: 2%;
+  border: 1px solid #8c8b88 !important;
+  border-radius: 2%;
 }
 
 .bg-black {
-    background: #0D0D0D !important;
+  background: #0d0d0d !important;
 }
 
 .logo-font strong.logo-bold {
-    font-size: 180%;
-    font-weight: bold;
-    background: linear-gradient(to bottom, #F2F2F2, #5d4dee);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  font-size: 180%;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #f2f2f2, #5d4dee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.overlay{
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position:fixed;
-    background: url('/media/homepage_bg.png') no-repeat center center fixed;
-    z-index: -1;
+.overlay {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: url("/media/homepage_bg.png") no-repeat center center fixed;
+  z-index: -1;
 }
 
 .synth-container,
@@ -127,44 +126,44 @@ h5{
 .card-body,
 .card-img-top,
 .lead,
-.card-footer{
-    background-color: #262624;
-    color: #F2F2F2;
-    box-sizing: 2px;
-    border-color: #5d4dee;
+.card-footer {
+  background-color: #262624;
+  color: #f2f2f2;
+  box-sizing: 2px;
+  border-color: #5d4dee;
 }
 
 a.category-badge > span.badge:hover {
-    background: #5d4dee !important;
-    color: #F2F2F2 !important;
+  background: #5d4dee !important;
+  color: #f2f2f2 !important;
 }
 
-#card-element{
-    color: #F2F2F2 !important;
+#card-element {
+  color: #f2f2f2 !important;
 }
 
 /* --------------------------------- Media queries */
 
 @media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
+  .fixed-top-desktop-only {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
 
-    .header-container {
-        padding-top: 164px;
-    }
+  .header-container {
+    padding-top: 164px;
+  }
 }
 
 @media (max-width: 991px) {
-    .header-container {
-        padding-top: 116px;
-    }
+  .header-container {
+    padding-top: 116px;
+  }
 
-    body {
-        height: calc(100vh - 116px);
-    }
+  body {
+    height: calc(100vh - 116px);
+  }
 }
