@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
-from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm  
-from .models import Profile
-from checkout.models import Order
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView
-from django.contrib.auth import logout
+from django.db import transaction
+from django.db.models.signals import post_save, post_delete
+
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm  
+from .models import Profile
+from checkout.models import Order, OrderLineItem
+from checkout.signals import update_on_save, update_on_delete
+
+
 
 
 @login_required
@@ -113,7 +117,20 @@ class CustomLogoutView(RedirectView):
 @login_required
 def delete_account(request):
     user = request.user
-    user.delete()
-    messages.success(request, 'Your account has been deleted.')
+
+    post_save.disconnect(update_on_save, sender=OrderLineItem)
+    post_delete.disconnect(update_on_delete, sender=OrderLineItem)
+
+    with transaction.atomic():
+        orders = Order.objects.filter(user=user)
+        for order in orders:
+            order.delete()  
+
+        user.delete()
+        messages.success(request, 'Your account has been deleted.')
+
+    post_save.connect(update_on_save, sender=OrderLineItem)
+    post_delete.connect(update_on_delete, sender=OrderLineItem)
+
     logout(request)
-    return redirect('login')    
+    return redirect('login')

@@ -191,7 +191,30 @@
             button.textContent = "View";
         }
     }
+
+    document.getElementById('delete-account-btn').onclick = function () {
+        document.getElementById('delete-confirmation').style.display = 'block';
+    };
+
+    document.getElementById('cancel-delete').onclick = function () {
+        document.getElementById('delete-confirmation').style.display = 'none';
+    };
+
+    document.getElementById('confirm-delete').onclick = function () {
+        var countdown = 10;
+        document.getElementById('confirm-delete').disabled = true;
+        var countdownTimer = setInterval(function () {
+            if (countdown === 0) {
+                clearInterval(countdownTimer);
+                window.location.href = "{% url 'delete_account' %}";
+            } else {
+                document.getElementById('delete-confirmation').innerHTML = '<p>Your account will be deleted in ' + countdown + ' seconds.</p>';
+                countdown--;
+            }
+        }, 1000);
+    };
 </script>
+
 
 
 {% endblock %}
