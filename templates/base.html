@@ -150,7 +150,20 @@
 
     {% block content %}
     {% endblock %}
-
+    <footer class="card-footer bg-black text-white mt-4 py-2 >
+        <div class="container ">
+            <div class="row">
+                <div class="col-8">
+                    <p class="mb-0"><small>&copy; {% now "Y" %} FreqNest. All Rights Reserved.</small>
+                        <small>
+                            <a href="{% url 'contact' %}" class="text-info">Contact</a> 
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     {% block postloadjs %}
     {% endblock %}
 </body>

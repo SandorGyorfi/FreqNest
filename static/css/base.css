@@ -9,6 +9,7 @@ body {
   height: calc(100vh - 164px);
   color: #f2f2f2;
   font-family: "Lato";
+ 
 }
 
 p {
@@ -136,6 +137,12 @@ h5 {
 a.category-badge > span.badge:hover {
   background: #5d4dee !important;
   color: #f2f2f2 !important;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
 }
 
 #card-element {
