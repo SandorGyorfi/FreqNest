@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-contianer">
+<div class="container header-container">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -12,15 +12,43 @@
 {% block content %}
 <div class="container h-100">
     <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
+        <div class="col-12 col-md-6 my-auto">
             <h1 class="display-4 logo-font text-black">
-                New Machine arrived
+                Euroracks, Semis, Got You Covered
             </h1>
             <div class="my-5">
                 <h4>
                     <a href="{% url 'all_synths' %}"
-                        class="buy-now-button btn btn-ls rounded-10 text-uppercase py-3">Buy Now</a>
+                        class="buy-now-button btn btn-lg rounded-10 text-uppercase py-3">View Products</a>
                 </h4>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 my-auto">
+            <!-- About Us Card -->
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h2 class="card-title text-center">About FreqNest</h2>
+                    <p class="card-text">
+                        FreqNest began with a simple mission: to bring the vibrant world of music creation to everyone.
+                        Our journey started this year, born out of a passion for the rhythms that define our lives and
+                        the beats that drive the pulse of innovation in music.
+                    </p>
+                    <p class="card-text">
+                        We understand that music is not just a hobby, but a way of life. That's why we've curated a
+                        selection of the finest Euroracks, synthesizers, and modular gear to cater to both budding
+                        musicians and seasoned professionals alike. From the warm analog sounds of vintage synths to the
+                        cutting-edge digital landscapes of modern sound design, our products are carefully chosen to
+                        inspire creativity and excellence.
+                    </p>
+                    <p class="card-text">
+                        At FreqNest, we believe in quality, authenticity, and community. We're more than just a store;
+                        we're a hub for artists to explore and expand their sonic horizons. Join us in this harmonious
+                        journey and discover the soundtrack to your next musical masterpiece.
+                    </p>
+                    <div class="text-center">
+                        <a href="{% url 'register' %}" class="btn rounded-10 mt-3 py-3">Sign Up Here</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
