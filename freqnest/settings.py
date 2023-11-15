@@ -32,7 +32,7 @@ STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['www.freqnest-4ae6f0930605.herokuapp.com']
 
@@ -140,11 +140,15 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = 'C:/ServerMini/FreqNest/staticfiles'
+STATICFILES_DIRS = [
+    'C:/ServerMini/FreqNest/static',
+]
+
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = 'C:/ServerMini/FreqNest/media'
+
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
