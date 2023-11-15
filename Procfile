@@ -1,1 +1,1 @@
-web: gunicorn freqnest.wsgi
+web: gunicorn freqnest.wsgi  --log-file -
