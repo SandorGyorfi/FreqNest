@@ -34,7 +34,7 @@ STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['freqnest-4ae6f0930605.herokuapp.com']
+ALLOWED_HOSTS = ['www.freqnest-4ae6f0930605.herokuapp.com']
 
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_SSL_REDIRECT = True
