@@ -16,25 +16,19 @@ from decouple import config
 import django_heroku
 import dj_database_url
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# Secret key configuration
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
+# Stripe public key configuration
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
+# Debug mode configuration (Change to False in production)
 DEBUG = True
 
+# Allowed hosts in production
 ALLOWED_HOSTS = ['freqnest-4ae6f0930605.herokuapp.com', 'www.freqnest-4ae6f0930605.herokuapp.com']
 
 
@@ -57,15 +51,31 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # Security middlewares
     "django.middleware.security.SecurityMiddleware",
+    
+    # Middleware for serving static files in production
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    
+    # Middleware for handling sessions
     "django.contrib.sessions.middleware.SessionMiddleware",
+    
+    # Middleware for common functionality
     "django.middleware.common.CommonMiddleware",
+    
+    # Middleware for CSRF protection
     "django.middleware.csrf.CsrfViewMiddleware",
+    
+    # Middleware for authentication
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    
+    # Middleware for handling messages
     "django.contrib.messages.middleware.MessageMiddleware",
+    
+    # Middleware for preventing clickjacking
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = "freqnest.urls"
 
@@ -131,28 +141,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS = [
-    'static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
+# Media files (uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'C:/ServerMini/FreqNest/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Storage for session messages
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+# Whitenoise for serving static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
+# Redirect URL after login
 LOGIN_REDIRECT_URL = 'profile'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 django_heroku.settings(locals())
-
