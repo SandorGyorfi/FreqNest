@@ -26,7 +26,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-DEBUG = False
+DEBUG = True
 
 LOGGING = {
     'version': 1,
