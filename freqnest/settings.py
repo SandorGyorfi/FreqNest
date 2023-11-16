@@ -26,20 +26,23 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-DEBUG = True
+DEBUG = False
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+        'file': {
+            'level': 'ERROR',  
+            'class': 'logging.FileHandler',
+            'filename': 'error.log',  
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
+            'handlers': ['file'],
+            'level': 'ERROR',  
+            'propagate': True,
         },
     },
 }
