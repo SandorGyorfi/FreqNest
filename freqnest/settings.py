@@ -28,6 +28,22 @@ STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 # Debug mode configuration (Change to False in production)
 DEBUG = False
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
 # Allowed hosts in production
 ALLOWED_HOSTS = ['freqnest-4ae6f0930605.herokuapp.com', 'www.freqnest-4ae6f0930605.herokuapp.com']
 
