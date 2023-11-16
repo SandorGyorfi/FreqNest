@@ -26,7 +26,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-DEBUG = True
+DEBUG = False
 
 # Allowed hosts in production
 ALLOWED_HOSTS = ['freqnest-4ae6f0930605.herokuapp.com', 'www.freqnest-4ae6f0930605.herokuapp.com']
