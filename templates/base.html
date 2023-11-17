@@ -12,6 +12,11 @@
 
     {% block extra_meta %}
     {% endblock %}
+    <style>
+        :root {
+            --background-image-url: url("{{ MEDIA_URL }}homepage_bg.png");
+        }
+    </style>
 
     {% block corecss %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"

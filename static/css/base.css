@@ -3,13 +3,12 @@ html {
 }
 
 body {
-  background: url("/media/homepage_bg.png") no-repeat center center fixed;
+  background: var(--background-image-url) no-repeat center center fixed;
   background-color: #0d0d0d;
   background-size: cover;
   height: calc(100vh - 164px);
   color: #f2f2f2;
   font-family: "Lato";
- 
 }
 
 p {
