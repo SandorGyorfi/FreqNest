@@ -116,7 +116,7 @@ h5 {
   top: 0;
   left: 0;
   position: fixed;
-  background: url("/media/homepage_bg.png") no-repeat center center fixed;
+  background: url('https://freqnest-images.s3.us-east-2.amazonaws.com/homepage_bg.png');  background-color: #0d0d0d;
   z-index: -1;
 }
 
