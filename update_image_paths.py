@@ -1,6 +1,5 @@
 import os
 import django
-import logging  
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'freqnest.settings')
 django.setup()
@@ -16,14 +15,12 @@ def update_image_urls():
 
     for product in Product.objects.all():
         if product.image_url:
-            image_name = product.image_url.split('/')[-1]  
+            image_name = product.image_url.split('/')[-1]
             new_url = f'{s3_base_url}/{image_name}'
             product.image_url = new_url
             product.save()
 
             print(f'Updated URL for product {product.name}: {new_url}')
-
-            logging.info(f'Updated URL for product {product.name}: {new_url}')
 
 if __name__ == "__main__":
     update_image_urls()
