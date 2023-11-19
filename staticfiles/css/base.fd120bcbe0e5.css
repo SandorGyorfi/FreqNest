@@ -3,7 +3,6 @@ html {
 }
 
 body {
-  background: var(--background-image-url) no-repeat center center fixed;
   background-color: #0d0d0d;
   background-size: cover;
   height: calc(100vh - 164px);
@@ -117,7 +116,6 @@ h5 {
   top: 0;
   left: 0;
   position: fixed;
-  background: url('https://freqnest-images.s3.us-east-2.amazonaws.com/homepage_bg.png');  background-color: #0d0d0d;
   z-index: -1;
 }
 
