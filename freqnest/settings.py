@@ -179,7 +179,7 @@ if USE_AWS:
     MEDIAFILES_LOCATION = 'media'
 
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-    MEDIA_URL = 'https://freqnest-images.s3.us-east-2.amazonaws.com/'
+    MEDIA_URL = 'http://freqnest-images.s3-website.us-east-2.amazonaws.com'
 else:
     # Local static/media settings
     STATIC_URL = '/static/'
