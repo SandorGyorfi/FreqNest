@@ -1,0 +1,173 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #0d0d0d;
+  background-size: cover;
+  height: calc(100vh - 164px);
+  color: #f2f2f2;
+  font-family: "Lato";
+}
+
+p {
+  color: #a0a0a0;
+}
+
+h5 {
+  font-size: 150%;
+  text-transform: uppercase;
+}
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.logo-font {
+  text-transform: uppercase;
+}
+
+.navbar-toggler-icon {
+  background-color: #5d4dee;
+  color: #f2f2f2;
+  border-radius: 10%;
+}
+
+.dropdown-menu {
+  background-color: #5d4dee;
+}
+
+.dropdown-item {
+  color: #f2f2f2;
+}
+
+.buy-now-button {
+  background: #5d4dee;
+  color: #f2f2f2;
+  min-width: 260px;
+}
+
+.btn {
+  background: #5d4dee;
+  color: #f2f2f2;
+}
+
+.buy-now-button:hover,
+.buy-now-button:active,
+.buy-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+  background: #f2f2f2;
+  color: #0d0d0d;
+}
+
+.list-inline:hover,
+.list-inline:active,
+.list-inline:focus {
+  background: #0d0d0d;
+  color: #f2f2f2;
+}
+
+.form-control {
+  background: #262624;
+  color: #5d4dee;
+}
+
+.form-control:hover,
+.form-control:active,
+.form-control:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+  background: #0d0d0d;
+  color: #f2f2f2;
+}
+
+.text-black {
+  color: #f2f2f2 !important;
+}
+
+.border-black {
+  border: 1px solid #8c8b88 !important;
+  border-radius: 2%;
+}
+
+.bg-black {
+  background: #0d0d0d !important;
+}
+
+.logo-font strong.logo-bold {
+  font-size: 180%;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #f2f2f2, #5d4dee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+.synth-container,
+.card,
+.card-body,
+.card-img-top,
+.lead,
+.card-footer {
+  background-color: #262624;
+  color: #f2f2f2;
+  box-sizing: 2px;
+  border-color: #5d4dee;
+}
+
+a.category-badge > span.badge:hover {
+  background: #5d4dee !important;
+  color: #f2f2f2 !important;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#card-element {
+  color: #f2f2f2 !important;
+}
+
+/* --------------------------------- Media queries */
+
+@media (min-width: 992px) {
+  .fixed-top-desktop-only {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+  .header-container {
+    padding-top: 164px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-container {
+    padding-top: 116px;
+  }
+
+  body {
+    height: calc(100vh - 116px);
+  }
+}
