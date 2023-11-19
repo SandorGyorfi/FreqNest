@@ -51,7 +51,7 @@
                             {% else %}
                             
                                 <a href="{{ product.image_url }}" target="_blank">
-                                    <img class="card-img-top img-fluid p-3 rounded-10 shadow" src="{% static 'noimage.png' %}" alt="{{ product.name }}">
+                                    <img class="card-img-top img-fluid p-3 rounded-10 shadow" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 </a>
                             {% endif %}
                                 <div class="card-body pb-0">
