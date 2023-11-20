@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-debug_mode = os.getenv('DEBUG')
+DEBUG=False
 
 
 
@@ -81,6 +81,8 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = "freqnest.urls"
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 TEMPLATES = [
     {
