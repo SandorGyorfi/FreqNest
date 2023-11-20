@@ -20,13 +20,13 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Secret key configuration
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '')
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # Stripe public key configuration
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-DEBUG=False
+DEBUG=True
 
 
 
