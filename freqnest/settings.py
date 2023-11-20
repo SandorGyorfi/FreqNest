@@ -28,27 +28,10 @@ STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 # Debug mode configuration (Change to False in production)
 debug_mode = os.getenv('DEBUG')
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'ERROR',  
-            'class': 'logging.FileHandler',
-            'filename': 'error.log',  
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',  
-            'propagate': True,
-        },
-    },
-}
+
 
 # Allowed hosts in production
-ALLOWED_HOSTS = ['freqnest-4ae6f0930605.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['freqnest-72f2ca52bd2b.herokuapp.com','localhost']
 
 
 
