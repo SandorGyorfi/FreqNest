@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-DEBUG=False
+DEBUG=True
 
 
 

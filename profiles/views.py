@@ -12,19 +12,20 @@ from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from .models import Profile
 from checkout.models import Order, OrderLineItem
 from checkout.signals import update_on_save, update_on_delete
+import logging
 
 
 
+logger = logging.getLogger(__name__)
 
 @login_required
 def profile(request):
     user = request.user
-    if not hasattr(user, 'profile'):
-        Profile.objects.create(user=user)
+    profile, created = Profile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        u_form = UserUpdateForm(request.POST, instance=user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
 
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -32,16 +33,17 @@ def profile(request):
             messages.success(request, 'Your profile has been updated!')
             return redirect('profile')
         else:
-            print("User form errors:", u_form.errors)
-            print("Profile form errors:", p_form.errors)
+            logger.error(f"User form errors: {u_form.errors}")
+            logger.error(f"Profile form errors: {p_form.errors}")
 
-    u_form = UserUpdateForm(instance=request.user)
-    p_form = ProfileUpdateForm(instance=request.user.profile)
+    else:
+        u_form = UserUpdateForm(instance=user)
+        p_form = ProfileUpdateForm(instance=profile)
 
-    orders = Order.objects.filter(user=user).order_by('-date')
+    orders = Order.objects.filter(user=user).order_by('-date') if hasattr(user, 'order_set') else None
     context = {'u_form': u_form, 'p_form': p_form, 'orders': orders}
-    return render(request, 'profiles/profiles.html', context)
 
+    return render(request, 'profiles/profiles.html', context)
 
 @login_required
 
