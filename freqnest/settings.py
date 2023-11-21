@@ -16,17 +16,20 @@ from decouple import config
 import django_heroku
 import dj_database_url
 
+SECURE_PROXY_SSL_HEADER = None
+SECURE_SSL_REDIRECT = False
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Secret key configuration
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
 # Stripe public key configuration
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 # Debug mode configuration (Change to False in production)
-DEBUG=True
+DEBUG=False
 
 
 
