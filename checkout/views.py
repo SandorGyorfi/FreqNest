@@ -8,7 +8,8 @@ from .models import Order, OrderLineItem, Product
 from .forms import OrderForm
 from cart.contexts import cart_contents
 import json
-from django.contrib import messages  
+from django.contrib import messages
+
 
 @login_required  
 def checkout(request):
@@ -29,35 +30,36 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            order.user = request.user  
+            order.user = request.user
             order.save()
             
             for item_id, quantity in cart.items():
                 product = Product.objects.get(id=item_id)
-                order_line_item = OrderLineItem(
+                OrderLineItem(
                     order=order,
                     product=product,
                     quantity=quantity,
-                )
-                order_line_item.save()
+                ).save()
 
             del request.session['cart']
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, "There was an error processing your order. Please try again.")  
-        cart = request.session.get('cart', {})
-        if not cart:
-            return redirect(reverse('products'))
+            messages.error(request, "There was an error processing your order. Please try again.")
 
-        current_cart = cart_contents(request)
-        total = current_cart['grand_total']
+    cart = request.session.get('cart', {})
+    if not cart:
+        return redirect(reverse('products'))
 
-        order_form = OrderForm()
+    current_cart = cart_contents(request)
+    total = current_cart['grand_total']
 
-        context = {
-            'order_form': order_form,
-            'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-        }
+    order_form = OrderForm()
+
+    context = {
+        'order_form': order_form,
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+        'total': total,  
+    }
 
     return render(request, 'checkout/checkout.html', context)
 
