@@ -40,9 +40,8 @@ def profile(request):
         u_form = UserUpdateForm(instance=user)
         p_form = ProfileUpdateForm(instance=profile)
 
-    orders = Order.objects.filter(user=user).order_by('-date') if hasattr(user, 'order_set') else None
+    orders = user.orders.all().order_by('-date') if hasattr(user, 'orders') else None
     context = {'u_form': u_form, 'p_form': p_form, 'orders': orders}
-
     return render(request, 'profiles/profiles.html', context)
 
 @login_required
