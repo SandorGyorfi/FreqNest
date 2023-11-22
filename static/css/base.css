@@ -137,8 +137,22 @@ a.category-badge > span.badge:hover {
 }
 
 footer {
-    width: 100%;
-    bottom: 0;
+  background: #0d0d0d; 
+  color: #f2f2f2; 
+  padding: 10px 0; 
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  width: 100%; 
+  text-align: center; 
+}
+
+.container {
+  max-width: 1140px; 
+  padding-right: 15px; 
+  padding-left: 15px; 
+  margin-right: auto; 
+  margin-left: auto;
 }
 
 #card-element {
@@ -216,6 +230,11 @@ footer {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+  }
+
+  .footer .container {
+    padding-right: 5px; 
+    padding-left: 5px; 
   }
 }
 
