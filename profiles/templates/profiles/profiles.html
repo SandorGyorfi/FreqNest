@@ -121,7 +121,6 @@
             id="confirm-delete">Yes</button>
     </div>
 
-
     <div class="row">
         <div class="col">
             <hr>
@@ -144,7 +143,6 @@
                             <td>
                                 <a href="javascript:void(0);" id="toggleButton-{{ order.id }}"
                                     onclick="toggleOrderDetails('details-{{ order.id }}', 'toggleButton-{{ order.id }}')">View</a>
-
                             </td>
                         </tr>
                         <tr id="details-{{ order.id }}" class="order-details" style="display:none;">
@@ -155,23 +153,20 @@
                                     <p><strong>Full Name:</strong> {{ order.full_name }}</p>
                                     <p><strong>Email:</strong> {{ order.email }}</p>
                                     <p><strong>Phone:</strong> {{ order.phone_number }}</p>
-                                    <p><strong>Address:</strong> {{ order.street_address1 }}, {{ order.street_address2
-                                        }}, {{ order.town_or_city }}, {{ order.postcode }}, {{ order.country }}</p>
+                                    <p><strong>Address:</strong> {{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}, {{ order.town_or_city }}, {{ order.postcode }}, {{ order.country }}</p>
                                     <p><strong>Order Total:</strong> £{{ order.order_total }}</p>
                                     <p><strong>Grand Total:</strong> £{{ order.grand_total }}</p>
-
+    
                                     <h3>Items in Order:</h3>
                                     <ul>
                                         {% for item in order.lineitems.all %}
-                                        <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Item Total: £{{
-                                            item.lineitem_total }}</li>
+                                        <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Item Total: £{{ item.lineitem_total }}</li>
                                         {% empty %}
                                         <li>No items in this order.</li>
                                         {% endfor %}
                                     </ul>
                                 </div>
                             </td>
-
                         </tr>
                         {% empty %}
                         <tr>
@@ -183,6 +178,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 <script>
