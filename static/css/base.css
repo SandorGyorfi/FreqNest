@@ -235,6 +235,31 @@ footer {
     padding-right: 5px; 
     padding-left: 5px; 
   }
+
+  .sort-select-wrapper {
+    width: 100%; 
+    margin: 10px 0;
+  }
+
+  #sort-selector {
+    width: 100%; 
+    padding: 10px;
+    -webkit-appearance: none; 
+    appearance: none; 
+    background-color: #262624; 
+    border: 1px solid #5d4dee; 
+    color: #f2f2f2; 
+    border-radius: 10px; 
+  }
+
+  .sort-select-wrapper::after {
+    content: '\25BC';
+    color: #f2f2f2; 
+    right: 10px; 
+    top: 50%; 
+    position: absolute; 
+    pointer-events: none; 
+  }
 }
 
 
