@@ -134,17 +134,17 @@
                         </fieldset>
                     </div>
                 </div>
+                <p class="text-center text-danger mt-4">
+                    <i class="fas fa-exclamation-circle"></i>
+                    Your card will be charged
+                    <strong>£{{ grand_total|floatformat:2 }}</strong>
+                </p>
                 <div class="text-center mt-5 mb-2">
                     <a href="{% url 'view_cart' %}" class="btn btn-outline-secondary btn-lg mr-2">
                         <i class="fas fa-chevron-left"></i> Adjust cart
                     </a>
                     <button type="submit" class="btn btn-primary btn-lg" id="completeOrder">Complete Checkout</button>
                 </div>
-                <p class="text-center text-danger mt-4">
-                    <i class="fas fa-exclamation-circle"></i>
-                    Your card will be charged
-                    <strong>£{{ grand_total|floatformat:2 }}</strong>
-                </p>
                 
             </form>
 
