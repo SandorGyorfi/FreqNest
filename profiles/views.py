@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import RedirectView
 from django.db import transaction
 from django.db.models.signals import post_save, post_delete
-
+from django.db.models import Prefetch
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm  
 from .models import Profile
 from checkout.models import Order, OrderLineItem
@@ -40,7 +40,9 @@ def profile(request):
         u_form = UserUpdateForm(instance=user)
         p_form = ProfileUpdateForm(instance=profile)
 
-    orders = user.orders.all().order_by('-date') if hasattr(user, 'orders') else None
+    order_lineitems_prefetch = Prefetch('lineitems', queryset=OrderLineItem.objects.all())
+    orders = Order.objects.filter(user=user).prefetch_related(order_lineitems_prefetch).order_by('-date')
+
     context = {'u_form': u_form, 'p_form': p_form, 'orders': orders}
     return render(request, 'profiles/profiles.html', context)
 
