@@ -16,6 +16,9 @@
 ## Features
 Welcome to FreqNest, where we blend passion for music with technology to create an unmatched synth shopping experience. Here's a closer look at the features that make your journey with us special.
 
+## Live View
+Check out FreqNest live: [FreqNest Live Demo](https://freqnest-72f2ca52bd2b.herokuapp.com/)
+
 ### Easy Registration: Your First Step into Our World
 - **Simple Sign-Up Process**: Joining FreqNest is easy. Choose a unique username, provide your email, create a secure password, and you're in.
 - **Personalized Experience**: Your account opens the door to features like saved favorites, order tracking, and personalized recommendations.
