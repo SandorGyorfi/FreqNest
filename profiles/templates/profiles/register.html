@@ -63,12 +63,8 @@
                 </fieldset>
 
                 <div class="submit-button text-right mt-2 mb-3">
-                    <button type="submit" class="btn mt-5 rounded-10 float-right">
-                        <a href="{% url 'register' %}" class="btn rounded-10"></a>
-                        <span class="text-uppercase">Register</span>
-                    </button>
                     <div class="mt-4 mb-3">
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button href="{% url 'register' %}" type="submit" class="btn btn-primary btn-block">
                             Register
                         </button>
                         <a href="{% url 'login' %}" class="btn btn-secondary btn-block mt-2">
