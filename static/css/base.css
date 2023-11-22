@@ -169,6 +169,15 @@ footer {
   body {
     height: calc(100vh - 116px);
   }
+
+  .row{
+    display: -ms-flexbox;
+  display: block;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  }
 }
 
 /* Mobile styles */
