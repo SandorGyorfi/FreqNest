@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required  # Import login_required decorator
+from django.contrib.auth.decorators import login_required  
 import os
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
@@ -8,6 +8,7 @@ from .models import Order, OrderLineItem, Product
 from .forms import OrderForm
 from cart.contexts import cart_contents
 import json
+from django.contrib import messages  
 
 @login_required  
 def checkout(request):
@@ -43,8 +44,7 @@ def checkout(request):
             del request.session['cart']
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            return HttpResponse("There was an error processing your order. Please try again.")
-    else:
+            messages.error(request, "There was an error processing your order. Please try again.")  
         cart = request.session.get('cart', {})
         if not cart:
             return redirect(reverse('products'))
