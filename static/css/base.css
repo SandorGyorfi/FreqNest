@@ -262,7 +262,7 @@ footer {
   }
 
   .custom-select{
-    height: calc( 0 + 2px);
+    height: calc(  + 2px); /*--don't actually know why but this works...--*/
   }
 }
 
