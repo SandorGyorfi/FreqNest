@@ -254,11 +254,15 @@ footer {
 
   .sort-select-wrapper::after {
     content: '\25BC';
-    color: #f2f2f2; 
-    right: 10px; 
-    top: 50%; 
-    position: absolute; 
-    pointer-events: none; 
+    color: #f2f2f2;
+    right: 25px;
+    top: 40%;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .custom-select{
+    height: calc( 0 + 2px);
   }
 }
 
