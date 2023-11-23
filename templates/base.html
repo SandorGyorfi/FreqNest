@@ -161,6 +161,24 @@
     
     {% block postloadjs %}
     {% endblock %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var formInputs = document.querySelectorAll('input,textarea');
+          formInputs.forEach(function(input) {
+            var currentPlaceholder = input.placeholder;
+        
+            input.addEventListener('focus', function() {
+              input.placeholder = '';
+            });
+        
+            input.addEventListener('blur', function() {
+              if (input.value === '') {
+                input.placeholder = currentPlaceholder;
+              }
+            });
+          });
+        });
+        </script>
 </body>
 
 </html>
