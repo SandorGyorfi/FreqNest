@@ -4,11 +4,17 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
 class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField()
+    email = forms.EmailField(required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ('username', 'email', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if self.initial.get(field_name) is None and field.required:
+                self.initial[field_name] = ''
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
