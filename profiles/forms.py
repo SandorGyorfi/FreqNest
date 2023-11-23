@@ -20,5 +20,13 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['default_phone_number', 'default_street_address1', 'default_street_address2',
-                  'default_town_or_city', 'default_postcode', 'default_country']
+        fields = [
+            'default_phone_number', 'default_street_address1', 'default_street_address2',
+            'default_town_or_city', 'default_postcode', 'default_country'
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+        for field_name in self.fields:
+            if self.initial[field_name] is None:
+                self.initial[field_name] = ''
