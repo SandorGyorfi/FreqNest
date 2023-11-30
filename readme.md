@@ -93,34 +93,116 @@ Building FreqNest was an exciting journey, and here are the tools I used:
 ### Payment Processing
 - **Stripe**: Integrated for secure online transactions.
 
-## Tests and Results
-Rigorous testing was conducted for each aspect of the application:
+# Tests and Results
+
+The application underwent rigorous testing across various components. Here's a detailed breakdown of each test, its respective results, and the encountered issues:
 
 ### Cart App Testing
-- **Adding Items**: Ensuring users can add synths to their cart.
-- **Removing Items**: Verifying the removal of items from the cart.
-- **Cart Notification**: Updating users with notifications appropriately.
+
+#### Test 1: Adding Items
+- **Objective**: Ensure users can add synths to their cart.
+- **Result**: The functionality works correctly.
+- **Issues**: No issues encountered during testing.
+
+#### Test 2: Removing Items
+- **Objective**: Verify the removal of items from the cart.
+- **Result**: The removal process functions as expected.
+- **Issues**: No issues encountered during testing.
+
+#### Test 3: Cart Notification
+- **Objective**: Update users with notifications appropriately.
+- **Result**: Notifications are implemented successfully.
+- **Issues**: No issues encountered during testing.
 
 ![Cart Test Result](media/fn_add_remove_notify_cart_test.png)
 
 ### Synths App Testing
-- **Product Display**: Accurate display of synth details.
-- **Category Functionality**: Effective sorting of synths by categories.
 
-![Category Test Result](media/fn_product_and_category_test.png)
+#### Test 4: Product Display
+- **Objective**: Verify the accurate display of synth details.
+- **Result**: The product display is accurate and reliable.
+- **Issues**: No issues encountered during testing.
+
+#### Test 5: Category Functionality
+- **Objective**: Test the effective sorting of synths by categories.
+- **Result**: Synths are sorted by categories as intended.
+- **Issues**: No issues encountered during testing.
+
+![Category Test Result](media/fn_product_category_test.png)
 
 ### Profiles App Testing
-- **Profile Updates**: Users can update their profiles with new information.
-- **Security and Authentication**: Integrity and security of user authentication processes.
+
+#### Test 6: Profile Updates
+- **Objective**: Ensure users can update their profiles with new information.
+- **Result**: Profile updates work correctly.
+- **Issues**: No issues encountered during testing.
+
+#### Test 7: Security and Authentication
+- **Objective**: Test the integrity and security of user authentication processes.
+- **Result**: Authentication processes are secure and functioning as expected.
+- **Issues**: No issues encountered during testing.
 
 ![Profiles Test Result](media/fn_profiles_test.png)
 
+### Users App Testing
+
+The Users app underwent extensive testing to ensure a seamless and secure user experience. Here are the detailed tests, their results, and encountered issues:
+
+#### Test 8: User Registration
+- **Objective**: Verify that new users can register successfully.
+- **Result**: New user registration is successful with proper data validation and error handling.
+- **Issues**: No issues encountered during testing.
+
+#### Test 9: User Login and Logout
+- **Objective**: Test the login and logout processes.
+- **Result**: Login and logout functions work correctly, and user sessions are managed properly.
+- **Issues**: No issues encountered during testing.
+
+#### Test 10: Authentication Required Views
+- **Objective**: Ensure that certain views are inaccessible without proper authentication.
+- **Result**: Unauthorized users are redirected to the login page for protected views, maintaining data security.
+- **Issues**: No issues encountered during testing.
+
+#### Test 11: Cart and Checkout Process
+- **Objective**: Test the entire cart and checkout process.
+- **Result**: Adding and removing items, updating quantities, and checkout processes function accurately.
+- **Issues**: No issues encountered during testing.
+
+#### Test 12: Order Saving and Validation
+- **Objective**: Validate the order saving process.
+- **Result**: Order saving and handling of various scenarios, including invalid data, are successful.
+- **Issues**: No issues encountered during testing.
+
+![Users Test Result](media/fn_users_automated_test.png)
+
+These tests played a crucial role in enhancing the reliability and robustness of the Users app, ensuring a user-friendly experience while maintaining data integrity and security standards.
+
 ### Checkout App Testing
-- **Payment Processing**: Testing Stripe integration for secure payments.
-- **Order Finalization**: User completion of orders and receiving confirmation.
+
+#### Test 13: Payment Processing
+- **Objective**: Test Stripe integration for secure payments.
+- **Result**: Payment processing functions as expected.
+- **Issues**: No issues encountered during testing.
+
+#### Test 14: Order Finalization
+- **Objective**: Ensure users can complete orders and receive confirmation.
+- **Result**: Order finalization works correctly, and users receive confirmation.
+- **Issues**: No issues encountered during testing.
+
+### Lighthouse Performance Testing
+
+#### Test 15: Overall Performance
+- **Objective**: Evaluate website loading speed and rendering performance using Google Lighthouse.
+- **Key Metrics**: First Contentful Paint (FCP), Largest Contentful Paint (LCP), First Meaningful Paint, Speed Index.
+- **Results**: The website meets essential security standards and mobile responsiveness but shows opportunities for improvement in loading speed and visual content rendering.
+- **Issues**: Identified issues include order history import to profiles, input fields not displaying correctly, typos, and pagination. These issues are actively being addressed in the development process.
+  
+![LightHouse Test Result](media/lh_test.png)
 
 
-![Checkout Test Result](media/fn_stripe_test.png)
+
+
+
 
 ## Data Flow Map
 A seamless and efficient user experience from browsing to purchase:
@@ -144,6 +226,11 @@ A seamless and efficient user experience from browsing to purchase:
 ### External Services
 - **Stripe Integration**: Secure payment transactions.
 - **AWS S3**: Storing and serving static and media files.
+
+## Data Schema
+Below is the Data Schema representing the structure of the database and the relations between different parts of the application:
+
+![Data Schema](media/data_schema.png)
 
 
 # Deployment
