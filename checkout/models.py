@@ -57,8 +57,7 @@ class OrderLineItem(models.Model):
         Override the original save method to set the lineitem total
         and update the order total.
         """
-        price = Decimal(self.product.price)
-        self.lineitem_total = price * self.quantity
+        self.lineitem_total = Decimal(self.product.price) * self.quantity
         self.lineitem_total = self.lineitem_total.quantize(Decimal('.01'))
         super().save(*args, **kwargs)
 

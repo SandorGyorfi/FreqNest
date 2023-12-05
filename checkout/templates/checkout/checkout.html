@@ -19,17 +19,7 @@
             <hr>
         </div>
     </div>
-
-    {% if messages %}
-    <div class="row">
-        <div class="col">
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-
+    
     <div class="row text-white">
         <div class="col">
             <div class="table-responsive rounded-10 text-white">
@@ -139,11 +129,15 @@
                     Your card will be charged
                     <strong>£{{ grand_total|floatformat:2 }}</strong>
                 </p>
-                <div class="text-center my-3">
-                    <a href="{% url 'view_cart' %}" class="btn btn-outline-secondary mr-2">
-                        <i class="fas fa-chevron-left"></i> Adjust cart
-                    </a>
-                    <button type="submit" class="btn btn-primary" id="completeOrder">Complete Checkout</button>
+                <div class="row mt-2">
+                    <div class="col d-flex justify-content-between">
+                        <a href="{% url 'view_cart' %}" class="btn">
+                            <i class="fas fa-chevron-left mr-1"></i> Adjust Cart
+                        </a>
+                        <button type="submit" class="btn btn-primary" id="completeOrder">
+                            <i class="fas fa-lock mr-1"></i> Complete Checkout
+                        </button>
+                    </div>
                 </div>
                 
                 

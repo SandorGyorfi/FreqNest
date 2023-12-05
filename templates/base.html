@@ -72,7 +72,7 @@
                     </div>
                 </form>
             </div>
-
+            
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <!-- User dropdown -->
@@ -87,7 +87,6 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="#" class="dropdown-item">My Synths</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
@@ -129,24 +128,23 @@
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-
-
-
     </header>
-
-    {% if messages %}
-    <div class="message-container">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mb-4">
-            {{ message }}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+    
+    
 
     {% block page_header %}
     {% endblock %}
-
+    {% if messages %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            {% for message in messages %}
+            <div class="custom-alert alert text-center" role="alert"> {{ message|slice:9 }} </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
     {% block content %}
     {% endblock %}
     <footer>
@@ -178,6 +176,30 @@
             });
           });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var alerts = document.querySelectorAll('.custom-alert');
+
+        function fadeOutAlert(alert) {
+            var fadeEffect = setInterval(function() {
+                if (!alert.style.opacity) {
+                    alert.style.opacity = 1;
+                }
+                if (alert.style.opacity > 0) {
+                    alert.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                    alert.style.display = 'none';
+                }
+            }, 50);
+        }
+
+        alerts.forEach(function(alert) {
+            setTimeout(function() {
+                fadeOutAlert(alert);
+            }, 5000);
+        });
+    });
         </script>
 </body>
 

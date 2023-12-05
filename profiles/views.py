@@ -14,8 +14,6 @@ from checkout.models import Order, OrderLineItem
 from checkout.signals import update_on_save, update_on_delete
 import logging
 
-
-
 logger = logging.getLogger(__name__)
 
 @login_required
@@ -73,14 +71,22 @@ def register(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(request, 'Registered successfully.') 
-            return redirect('profile')
+            if user:
+                login(request, user)
+                messages.success(request, 'Registered successfully.') 
+                return redirect('profile')
+            else:
+                messages.error(request, 'Authentication failed after registration.')
+                logger.error(f"Authentication failed for user: {username}")
         else:
-            print("Form is not valid: ", form.errors)  
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.capitalize()}: {error}")
+            logger.error(f"Registration form errors: {form.errors}")
     else:
         form = UserRegistrationForm()
     return render(request, 'profiles/register.html', {'form': form})
+
 
 
 
@@ -101,21 +107,21 @@ def custom_login(request):
                 return redirect('profile')
             else:
                 messages.error(request, 'Invalid username or password.')
+                logger.error(f"Failed login attempt for username: {username}")  
         else:
             messages.error(request, 'Invalid form submission.')
     else:
         form = AuthenticationForm()
     return render(request, 'profiles/login.html', {'form': form})
 
-
+    
 class CustomLogoutView(RedirectView):
-    url = reverse_lazy('login')
+    url = reverse_lazy('login')  
     
     def get(self, request, *args, **kwargs):
         logout(request)
         messages.success(request, 'Successfully logged out.')
-        return super().get(request, *args, **kwargs)
-    
+        return super().get(request, *args, **kwargs)    
 
 @login_required
 def delete_account(request):

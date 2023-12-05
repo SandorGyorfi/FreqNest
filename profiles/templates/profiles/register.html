@@ -10,22 +10,6 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="card mb-2">
-    <div class="row">
-        <div class="col">
-            <hr>
-            <h2 class="logo-font text-center mb-2">Sign Up</h2>
-            <hr>
-            {% if messages %}
-            <div class="row">
-                <div class="col">
-                    {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
 
     <div class="row justify-content-center text-center rounded">
         <div class="col-8 rounded mx-auto">
@@ -34,6 +18,30 @@
 
                 <fieldset class="rounded-10 border text-white">
                     <legend class="fieldset-label small text-black px-2 w-auto">Sign Up</legend>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+
+                            <button class="btn btn-primary w-100" type="button" data-toggle="collapse"
+                                data-target="#passwordGuidelines" aria-expanded="false"
+                                aria-controls="passwordGuidelines">
+                                Password Guidelines
+                            </button>
+
+                            <div class="collapse" id="passwordGuidelines">
+                                <div class="card card-body">
+                                    <ul>
+                                        <li>At least 8 characters long</li>
+                                        <li>Includes both uppercase and lowercase letters</li>
+                                        <li>Contains numbers and symbols</li>
+                                        <li>Is not a common password or easy to guess</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
@@ -62,12 +70,13 @@
 
                 </fieldset>
 
-                <div class="submit-button text-right mt-2 mb-3">
-                    <div class="mt-4 mb-3">
-                        <button href="{% url 'register' %}" type="submit" class="btn btn-primary btn-block">
+
+                <div class="row mt-2 mb-3">
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">
                             Register
                         </button>
-                        <a href="{% url 'login' %}" class="btn btn-secondary btn-block mt-2">
+                        <a href="{% url 'login' %}" class="btn btn-secondary ml-2">
                             Login Here
                         </a>
                     </div>
@@ -76,4 +85,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

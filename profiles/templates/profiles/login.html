@@ -10,34 +10,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="overlay"></div>
-<div class="card mb-2">
-    <div class="row">
-        <div class="col">
-            <hr>
-            <h2 class="logo-font text-center mb-2">Login</h2>
-            <hr>
-            {% if messages %}
-            <div class="row">
-                <div class="col">
-                    {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="row justify-content-center text-center rounded">
-        <div class="col-8 rounded mx-auto">
-            {% if form.errors %}
-            <div class="alert alert-danger">Your username and password didn't match. Please try again.</div>
-            {% endif %}
+<div class="card mb-2 login-form-container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            
             <form method="post" class="text-white">
                 {% csrf_token %}
                 <fieldset class="rounded-10 border text-white">
-                    <legend class="fieldset-label small text-black px-2 w-auto">Login</legend>
+                    <legend class="fieldset-label small text-black w-auto">Login</legend>
 
                     <div class="form-group">
                         <label for="id_username" class="form-label">Username:</label>
@@ -51,19 +31,12 @@
                     </div>
 
                 </fieldset>
-
-                <div class="submit-button text-right mt-2 mb-3">
-                <div class="mt-4 mb-3">
-                        <button href="{% url 'login' %}" type="submit" class="btn btn-primary btn-block">
-                            Login
-                        </button>
-                        <a href="{% url 'register' %}" class="btn btn-secondary btn-block mt-2">
-                            Register Here
-                        </a>
+                <div class="row mt-2 mb-3">
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn my-2">Login</button>
+                        <a href="{% url 'register' %}" class="btn my-2 ml-2">Register Here</a>
                     </div>
                 </div>
-
-
             </form>
         </div>
     </div>

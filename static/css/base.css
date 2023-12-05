@@ -54,36 +54,46 @@ h5 {
 .btn {
   background: #5d4dee;
   color: #f2f2f2;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  max-width: 200px;
+  width: 100%;
+  display: block;
 }
 
-.buy-now-button:hover,
-.buy-now-button:active,
-.buy-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
+.btn:hover,
+.btn:active,
+.btn:focus {
   background: #f2f2f2;
   color: #0d0d0d;
-}
-
-.list-inline:hover,
-.list-inline:active,
-.list-inline:focus {
-  background: #0d0d0d;
-  color: #f2f2f2;
 }
 
 .form-control {
   background: #262624;
   color: #5d4dee;
+  max-width: 300px;
+  width: 100%;
+  margin: auto;
+  display: block;
 }
 
-.form-control:hover,
-.form-control:active,
-.form-control:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
+.form-label {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.fieldset-label {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 1rem;
+  display: block;
+}
+
+.list-inline-item:hover,
+.list-inline-item:active,
+.list-inline-item:focus {
   background: #0d0d0d;
   color: #f2f2f2;
 }
@@ -137,20 +147,20 @@ a.category-badge > span.badge:hover {
 }
 
 footer {
-  background: #0d0d0d; 
-  color: #f2f2f2; 
-  padding: 10px 0; 
-  bottom: 0; 
-  left: 0; 
-  width: 100%; 
-  text-align: center; 
+  background: #0d0d0d;
+  color: #f2f2f2;
+  padding: 10px 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .container {
-  max-width: 1140px; 
-  padding-right: 15px; 
-  padding-left: 15px; 
-  margin-right: auto; 
+  max-width: 1140px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
   margin-left: auto;
 }
 
@@ -159,7 +169,6 @@ footer {
 }
 
 /* --------------------------------- Media queries */
-
 @media (min-width: 992px) {
   .fixed-top-desktop-only {
     position: fixed;
@@ -183,89 +192,54 @@ footer {
     height: calc(100vh - 116px);
   }
 
-  .row{
+  .row {
     display: -ms-flexbox;
-  display: block;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+    display: block;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 }
 
-/* Mobile styles */
 @media (max-width: 767px) {
-  .btn {
-    display: block; 
+  .btn,
+  .form-control {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  
-  .btn + .btn {
-    margin-left: 0; 
-  }
-
-  .btn {
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .form-control {
-    max-width: 100%;
-    margin-bottom: 10px; 
-  }
-
   #card-element {
     max-width: 100%;
   }
 
-  .row{
+  .row {
     display: -ms-flexbox;
-  display: block;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  }
-
-  .footer .container {
-    padding-right: 5px; 
-    padding-left: 5px; 
-  }
-
-  .sort-select-wrapper {
-    width: 100%; 
-    margin: 10px 0;
-  }
-
-  #sort-selector {
-    width: 100%; 
-    padding: 10px;
-    -webkit-appearance: none; 
-    appearance: none; 
-    background-color: #262624; 
-    border: 1px solid #5d4dee; 
-    color: #f2f2f2; 
-    border-radius: 10px; 
-  }
-
-  .sort-select-wrapper::after {
-    content: '\25BC';
-    color: #f2f2f2;
-    right: 25px;
-    top: 40%;
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .custom-select{
-    height: calc(  + 2px); /*--don't actually know why but this works...--*/
-    font-weight: 400;
-    line-height: 1.5;
+    display: block;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 }
 
+.login-heading {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form-container hr {
+  border: none;
+}
+
+#delete-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-alert {
+  background-color: #5d4dee; 
+  color: #f2f2f2; 
+}
 

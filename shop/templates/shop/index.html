@@ -45,9 +45,15 @@
                         we're a hub for artists to explore and expand their sonic horizons. Join us in this harmonious
                         journey and discover the soundtrack to your next musical masterpiece.
                     </p>
+                    {% if not request.user.is_authenticated %}
                     <div class="text-center">
                         <a href="{% url 'register' %}" class="btn rounded-10 mt-3 py-3">Sign Up Here</a>
                     </div>
+                    {% else %}
+                    <div class="text-center">
+                        <a href="{% url 'all_synths' %}" class="btn rounded-10 mt-3 py-3">Go Shopping</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

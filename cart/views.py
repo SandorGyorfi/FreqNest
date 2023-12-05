@@ -11,11 +11,9 @@ def view_cart(request):
 
 
 def add_to_cart(request, item_id):
-
-
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
-    redirect_url = request.POST.get('redirect_url')
+    redirect_url = request.POST.get('redirect_url', reverse('view_cart'))  
 
     cart = request.session.get('cart', {})
 
@@ -28,6 +26,7 @@ def add_to_cart(request, item_id):
 
     request.session['cart'] = cart
     return redirect(redirect_url)
+
 
 
 def adjust_cart(request, item_id):

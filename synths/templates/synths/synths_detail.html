@@ -2,97 +2,78 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<!-- Header Block -->
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-
+<!-- Main Content Block -->
 <div class="overlay"></div>
-<div class="container-fluid">
-    <h2 class="logo-font center-align">Synth Details</h2>
-    <div class="card row">
-        {% if messages %}
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-success bg-dark text-white">
-                        <ul>
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-            <div class="image-container my-5">
+<div class="container">
+    <h2 class="logo-font text-center">Synth Details</h2>
+
+    <!-- Product Details Section -->
+    <div class="row justify-content-center my-5">
+        <div class="col-12 col-md-6">
+            <div class="image-container">
                 {% if product.image_url %}
                 <a href="{{ product.image_url }}" target="_blank">
                     <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
                 </a>
-            {% else %}
+                {% else %}
                 <a href="">
                     <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                 </a>
-            {% endif %}
-                </div>
+                {% endif %}
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{ product.name }}</p>
-                    <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
-                    {% if product.category %}
-                        <p class="small mt-1 mb-0">
-                            <a class="text-muted" href="{% url 'all_synths' %}?category={{ product.category.name }}">
-                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                            </a>
-                        </p>
-                    {% endif %}
-                    <p class="mt-3">{{ product.description }}</p>
-                    <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            <div class="col-12">
-                                <p class="mt-3"><strong>Enter quantity:</strong></p>
-                                <div class="form-group w-50">
-                                    <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
-                                        name="quantity" value="1" min="1" max="99"
-                                        data-item_id="{{ product.id }}">
-                                </div>
-                            </div>
+        </div>
 
-                            <div class="col-12 mt-2">
-                                <a href="{% url 'all_synths' %}" class="btn rounded-10 mt-5">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="text-uppercase">Keep Shopping</span>
-                                </a>
-                                <input type="submit" class="btn  rounded-10 text-uppercase mt-5" value="Add to Cart">
-                                
-                                <!-- View Cart button -->
-                                <a href="{% url 'view_cart' %}" class="btn btn-black rounded-10 text-uppercase mt-5">
-                                    <span class="text-uppercase">View Cart</span>
-                                    <span class="icon">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        </div>
-                    </form>
-                </div>
+        <!-- Product Information Column -->
+        <div class="col-12 col-md-6">
+            <div class="product-details-container">
+                <p class="product-name">{{ product.name }}</p>
+                <p class="product-price lead font-weight-bold">£{{ product.price }}</p>
+                {% if product.category %}
+                <p class="product-category small">
+                    <a class="text-muted" href="{% url 'all_synths' %}?category={{ product.category.name }}">
+                        <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                    </a>
+                </p>
+                {% endif %}
+                <p class="product-description">{{ product.description }}</p>
+
+                <!-- Add to Cart Form -->
+                <form class="add-to-cart-form" action="{% url 'add_to_cart' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_qty_{{ product.id }}">Enter quantity:</label>
+                        <input class="form-control qty_input" id="id_qty_{{ product.id }}" type="number"
+                               name="quantity" value="1" min="1" max="99"
+                               data-item_id="{{ product.id }}">
+                    </div>
+                    
+                    <div class="form-actions d-flex justify-content-center mt-4">
+                        <a href="{% url 'all_synths' %}" class="btn btn-outline-primary btn-lg mr-2">
+                            <i class="fas fa-shopping-bag mr-1"></i> Keep Shopping
+                        </a>
+                        <button type="submit" class="btn btn-primary btn-lg mr-2">
+                            <i class="fas fa-cart-plus mr-1"></i> Add to Cart
+                        </button>
+                        <a href="{% url 'view_cart' %}" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-shopping-cart mr-1"></i> View Cart
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    
-
+{{ block.super }}
 {% endblock %}
