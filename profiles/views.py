@@ -14,8 +14,10 @@ from checkout.models import Order, OrderLineItem
 from checkout.signals import update_on_save, update_on_delete
 import logging
 
+# Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+# Profile view
 @login_required
 def profile(request):
     user = request.user
@@ -33,7 +35,6 @@ def profile(request):
         else:
             logger.error(f"User form errors: {u_form.errors}")
             logger.error(f"Profile form errors: {p_form.errors}")
-
     else:
         u_form = UserUpdateForm(instance=user)
         p_form = ProfileUpdateForm(instance=profile)
@@ -44,24 +45,14 @@ def profile(request):
     context = {'u_form': u_form, 'p_form': p_form, 'orders': orders}
     return render(request, 'profiles/profiles.html', context)
 
+# Order detail view
 @login_required
-
 def order_detail(request, order_id):
-
-    """
-
-    View function to display the details of a specific order using the profiles.html template.
-
-    """
-
     order = get_object_or_404(Order, id=order_id)
-
-
     context = {'order': order}
-
     return render(request, 'profiles.html', context)
 
-
+# Registration view
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -87,13 +78,11 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'profiles/register.html', {'form': form})
 
-
-
-
+# Index view
 def index(request):
     return render(request, 'profiles/profiles.html')
 
-
+# Custom login view
 def custom_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -114,7 +103,7 @@ def custom_login(request):
         form = AuthenticationForm()
     return render(request, 'profiles/login.html', {'form': form})
 
-    
+# Custom logout view
 class CustomLogoutView(RedirectView):
     url = reverse_lazy('login')  
     
@@ -123,6 +112,7 @@ class CustomLogoutView(RedirectView):
         messages.success(request, 'Successfully logged out.')
         return super().get(request, *args, **kwargs)    
 
+# Delete account view
 @login_required
 def delete_account(request):
     user = request.user

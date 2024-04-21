@@ -1,18 +1,24 @@
 from django.contrib.auth.decorators import login_required  
-import os
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+import os
+import json
 from .models import Order, OrderLineItem, Product
 from .forms import OrderForm
 from cart.contexts import cart_contents
-import json
-from django.contrib import messages
+
+
 
 
 @login_required  
 def checkout(request):
+    """
+    Handles the checkout process. If the request method is POST, it processes the order form and saves the order.
+    If the request method is GET, it displays the checkout page.
+    """
     if request.method == 'POST':
         cart = request.session.get('cart', {})
 
@@ -65,6 +71,9 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
+    """
+    Handles the checkout success page. It retrieves the order and displays the success page.
+    """
     order = get_object_or_404(Order, order_number=order_number)
     context = {
         'order': order,
@@ -74,6 +83,9 @@ def checkout_success(request, order_number):
 
 @csrf_exempt  
 def save_order(request):
+    """
+    Handles the saving of an order. If the request method is POST, it processes the order data and saves the order.
+    """
     if request.method == 'POST':
         try:
             data = json.loads(request.POST.get('orderData'))
@@ -96,9 +108,9 @@ def save_order(request):
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 
-
 def stripe_public_key(request):
+    """
+    Returns the Stripe public key.
+    """
     public_key = os.environ.get('STRIPE_PUBLIC_KEY', '')  
     return JsonResponse({'publicKey': public_key})
-
-
