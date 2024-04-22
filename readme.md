@@ -14,7 +14,10 @@
 ![Mockup Image](media/mockup.png)
 
 ## Features
-Welcome to FreqNest, where we blend passion for music with technology to create an unmatched synth shopping experience. Here's a closer look at the features that make your journey with us special.
+Welcome to FreqNest, where I blend passion for music with technology to create an unmatched synth shopping experience. This project was developed as my final milestone project/module for the Gateway Qualifications Level 5 Diploma in Web Application Development, marking a significant achievement in my programming education.
+
+## Important Update
+As part of ongoing refinements post-course completion, I have refactored the project, and certain images have been replaced or removed due to licensing constraints. This ensures compliance with licensing requirements while preserving the site's aesthetic and functionality.
 
 ## Live View
 Check out FreqNest live: [FreqNest Live Demo](https://freqnest-72f2ca52bd2b.herokuapp.com/)
